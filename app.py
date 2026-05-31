@@ -1,10 +1,10 @@
+import os
 from fastapi import FastAPI, UploadFile, File, Form, Header, HTTPException
-import json
 
 app = FastAPI()
 
-LAVIS_TOKEN = "replace_me_lavis"
-GEOM_TOKEN = "replace_me_geom"
+LAVIS_TOKEN = os.getenv("LAVIS_TOKEN", "").strip()
+GEOM_TOKEN = os.getenv("GEOM_TOKEN", "").strip()
 
 def check_bearer(auth_header: str | None, expected: str):
     if not auth_header or not auth_header.startswith("Bearer "):
